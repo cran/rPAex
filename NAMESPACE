@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+import(raster)
+import(agricolae)
+importFrom("raster", "plot", "predict")
+importFrom("stats", "dist", "lm")
