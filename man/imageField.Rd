@@ -1,6 +1,6 @@
 \name{imageField}
 \alias{imageField}
-\title{Matching pixels with field book}
+\title{Matching Pixels With Field Book}
 \description{
 The function uses the raster image of all bands. It generates the limits of the unit and 
 extracts the values of each pixel of the plot n x m units (n, m = 1,2, ...). 
@@ -22,17 +22,20 @@ imageField(r, P, nPl, nPw, long, wide,  ploting = TRUE, ...)
   \item{ploting}{Overlap the units in the area, TRUE or FALSE}
   \item{\dots}{Other parameters the plot}
 }
+
 \value{
+\item{parameters}{Parameters of experimental design in precision agriculture}
 \item{Qbase}{Image data frame with location in field}
 }
 
 \seealso{\code{\link{borderPoint}}, \code{\link{externalPoint}}, 
-\code{\link{fixedPoint}}, \code{\link{fourPoint}}, \code{\link{designRaster}}
+\code{\link{fixedPoint}}, \code{\link{fourPoint}}, \code{\link{designRaster}}, 
+\code{\link{movePlot}}
 }
 \examples{
 library(rPAex)
-base1 <- system.file("external/cassava.csv", package="rPAex")
-s<-read.csv(base1,header = TRUE)
+crop <- system.file("external/cassava.csv", package="rPAex")
+s<-read.csv(crop,header = TRUE)
 r <- raster::rasterFromXYZ(s)
 #-----
 # P<-locator(3)
@@ -41,9 +44,10 @@ Q<-fourPoint(P)
 #-----
 nPl<-11; nPw<-3; long=1; wide=0.9
 raster::image(r,useRaster=FALSE,main="Cassava crop\nnear infrared image")
-R<-imageField(r, P=Q, nPl, nPw, long, wide, ploting = TRUE, border="blue",lwd=1)
+img<-imageField(r, P=Q, nPl, nPw, long, wide, ploting = TRUE, border="blue",lwd=1)
+R<-img$Qbase
 head(R)
 q<-agricolae::tapply.stat(R[,2:3],R[,1],mean)
 text(q[,2],q[,3],q[,1],cex=1)
 }
-\keyword{design}
+\keyword{ design }

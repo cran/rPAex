@@ -55,6 +55,8 @@ imageField <-
   }
   colnames(Qbase)[4:(n+3)]<-c(paste("L",1:n,sep=""))
   Qbase<-data.frame(Qbase)
-    return(Qbase)
+  parameters <- list(P=P, nPl=nPl,nPw=nPw,long=long,wide=wide)
+  outPlot <- list(parameters = parameters, Qbase = Qbase)
+    return(outPlot)
   }
 

@@ -1,6 +1,6 @@
 \name{externalPoint}
 \alias{externalPoint}
-\title{Information outside the experimental plot
+\title{Information Outside the Experimental Plot
 }
 \description{
 Pixels with information outside the experimental plot under study. The environment outside 
@@ -17,17 +17,14 @@ externalPoint(models,R)
 out points
 }
 \value{
- \item{outpoints }{coordenate matrix }
+ \item{outpoints }{coordenate matrix}
 }
 \author{
 Felipe de Mendiburu
 }
-\note{
-further notes
-}
-
 \seealso{\code{\link{borderPoint}}, \code{\link{fixedPoint}},  
-\code{\link{fourPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}
+\code{\link{fourPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}, 
+\code{\link{movePlot}}
 }
 \examples{
 library(rPAex)
@@ -35,8 +32,8 @@ library(rPAex)
 # for image "tiff" format, see rPAex document
 # r <- fileRaster(tiff)
 #
-base2 <- system.file("external/corn.csv", package="rPAex")
-s<-read.csv(base2,header = TRUE)
+crop <- system.file("external/corn.csv", package="rPAex")
+s<-read.csv(crop,header = TRUE)
 r <- raster::rasterFromXYZ(s)
 raster::image(r,useRaster=FALSE,main="Corn crop\nArea outside the experimental plot")
 #P<-locator(3)

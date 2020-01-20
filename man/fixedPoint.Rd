@@ -1,14 +1,13 @@
 \name{fixedPoint}
 \alias{fixedPoint}
 \title{
-Orientation, position and length of the experimental unit
+Orientation, Position and Length of the Experimental Unit
 }
 \description{
 Generates a number of equidistant spatial points in an area. Fixed a couple of points in 
 the image and the number of segments included, the function determines the position of 
 the segments according to the length of the segment. The function relates the real dimension 
-of the segment measurement to the image dimension. The function is useful for sizing plot sizes 
-in the field, it also facilitates the generation of experimental units in the field.
+of the segment measurement to the image dimension. The function is useful for sizing plot sizes in the field, it also facilitates the generation of experimental units in the field.
 }
 \usage{
 fixedPoint(start, end, npoints, long)
@@ -34,12 +33,13 @@ This function is used by imageField.
 }
 
 \seealso{\code{\link{borderPoint}}, \code{\link{externalPoint}}, 
-\code{\link{fourPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}
+\code{\link{fourPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}, 
+\code{\link{movePlot}}
 }
 \examples{
 library(rPAex)
-one <- system.file("Examples/data1.r", package="rPAex")
-source(one)
+prg1 <- system.file("examples/Ex-01.R", package="rPAex")
+source(prg1)
 r<-data1()
 oldpar<-par(mar=c(2,2,4,2),cex=0.8)
 raster::image(r,col=col2rgb(10),main="Orientation, position and length of the experimental unit")
@@ -60,4 +60,4 @@ text(20,35,"start",cex=1.5)
 text(80,75,"end",cex=1.5)
 par(oldpar)
 }
-\keyword{design}
+\keyword{ design }

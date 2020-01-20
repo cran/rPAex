@@ -1,6 +1,6 @@
 # Convert file tiff to raster each band in one layer
 fileRaster<-function(file){
-n<- raster::nbands(raster(file))
+n<- raster::nbands(raster::raster(file))
 r1<-raster::raster(file,band=1)
 xy<-raster::coordinates((r1))
 r<-cbind(xy)

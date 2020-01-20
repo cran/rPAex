@@ -1,0 +1,9 @@
+Changes in new version
+
+Version rPAex 1.0.1 (January 18, 2020)
+-------------------------------------------
+
+- New movePlot() function:  Rotation and Translation of the Plot Position.
+- Added in the output the parameters of the imageField() function is now a list with parameters and Qbase (data frame image)
+- In the "inst" path, 3 divisions were determined: 1-examples (procedures in R), 2-external (data) and 3-script (complementary functions of the package)
+- The examples were edited.
