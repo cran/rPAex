@@ -2,8 +2,8 @@ Package: rPAex
 Type: Package
 Title: Automatic Detection of Experimental Unit in Precision
         Agriculture
-Version: 1.0.1
-Date: 2020-01-18
+Version: 1.0.2
+Date: 2022-08-18
 Authors@R: c(person("Felipe", "de Mendiburu", role=c("aut","cre"), 
                     email = "fmendiburu@lamolina.edu.pe"), 
              person("David", "Mauricio",role=c("aut"), 
@@ -17,10 +17,10 @@ Imports: raster, agricolae
 Description: A part of precision agriculture is linked to the spectral image obtained from the cameras. With the image information of the agricultural experiment, the included functions facilitate the collection of spectral data associated with the experimental units. Some designs generated in R are linked to the images, which allows the use of the information of each pixel of the image in the experimental unit and the treatment. Tables and images are generated for the analysis of the precision agriculture experiment during the entire vegetative period of the crop.
 License: GPL
 NeedsCompilation: no
-Packaged: 2020-01-20 02:23:22 UTC; felipe
+Packaged: 2022-08-21 00:10:22 UTC; felipe
 Author: Felipe de Mendiburu [aut, cre],
   David Mauricio [aut],
   Rodrigo Morales [aut],
   Roberto Quiroz [aut]
 Repository: CRAN
-Date/Publication: 2020-01-20 06:30:03 UTC
+Date/Publication: 2022-08-21 02:20:02 UTC

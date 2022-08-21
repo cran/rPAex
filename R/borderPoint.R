@@ -1,10 +1,54 @@
-borderPoint <-
-function(Q){
-Q<-as.data.frame(Q)
-  m1<-lm(y~x,data=Q[1:2,])
-  m2<-lm(y~x,data=Q[2:3,])
-  m3<-lm(y~x,data=Q[3:4,])
-  m4<-lm(y~x,data=Q[c(1,4),])
-  models<-list(m1=m1,m2=m2,m3=m3,m4=m4)
-  return(models)
+borderPoint<-function (r,Rbook,distance,plotting=TRUE,...) 
+{
+  parameters<-Rbook$parameters
+  Q<- parameters$Q
+  ny<-parameters$ny
+  nx<-parameters$nx
+  dy<-parameters$dy
+  dx<-parameters$dx
+delta<-1.0e-10
+M <-Q1<-matrix(0,nrow=4,ncol=2)
+# Ec 1: P1,P2
+M[1,2]<-(Q[2,2]-Q[1,2])/(Q[2,1]-Q[1,1]+delta)
+M[1,1]<-Q[1,2]-M[1,2]*Q[1,1]+distance
+# Ec 2: P2,P3
+M[2,2]<-(Q[3,2]-Q[2,2])/(Q[3,1]-Q[2,1]+delta)
+M[2,1]<-Q[2,2]-M[2,2]*Q[2,1]-M[2,2]*distance
+# Ec 3: P3,P4
+M[3,2]<-(Q[4,2]-Q[3,2])/(Q[4,1]-Q[3,1]+delta)
+M[3,1]<-Q[3,2]-M[3,2]*Q[3,1]-distance
+# Ec 4: P4,P1
+M[4,2]<-(Q[4,2]-Q[1,2])/(Q[4,1]-Q[1,1]+delta)
+M[4,1]<-Q[4,2]-M[4,2]*Q[4,1]+M[4,2]*distance
+# resolver las ecuaciones y=a + bx
+#-------------------
+x = (M[4,1]-M[1,1])/(M[1,2]-M[4,2])
+y = M[1,1]+M[1,2]*x
+Q1[1,1]<-x; Q1[1,2]<-y
+#-------------------
+x = (M[2,1]-M[1,1])/(M[1,2]-M[2,2])
+y = M[1,1]+M[1,2]*x
+Q1[2,1]<-x; Q1[2,2]=y
+#-------------------
+x = (M[2,1]-M[3,1])/(M[3,2]-M[2,2])
+y = M[3,1]+M[3,2]*x
+Q1[3,1]<-x; Q1[3,2]=y
+#-------------------
+x = (M[4,1]-M[3,1])/(M[3,2]-M[4,2])
+y = M[3,1]+M[3,2]*x
+Q1[4,1]<-x; Q1[4,2]=y
+#-------------------
+u <- imageField(r, Q1, 1, 1, 0, 0, plotting = FALSE)$Qbase
+w<-raster::rasterFromXYZ(u[-1])
+u <- imageField(w, Q1, 1, 1, 0, 0, plotting = FALSE)$Qbase
+if(plotting)raster::image(w,useRaster=FALSE,...)
+v <- imageField(w, Q, ny, nx, dy,dx, plotting = plotting,...)$Qbase
+s1 <- paste(u[, 2], u[, 3], sep = "-")
+s2 <- paste(v[, 2], v[, 3], sep = "-")
+s <- s1 %in% s2
+border <- u[!s,-1 ]
+w<-raster::rasterFromXYZ(border)
+if(plotting)raster::image(w,useRaster=FALSE,...)
+return(list(Qborder=Q1,Border=border))
 }
+

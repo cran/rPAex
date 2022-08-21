@@ -47,3 +47,4 @@ R1<-imageField(r,Qnew,3,2,13,22,ploting = TRUE,col="red",density=20)
 points(q$x[1],q$y[1],cex=3)
 }
 \keyword{ dplot }
+

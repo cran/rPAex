@@ -14,9 +14,8 @@ fourPoint(P)
 \item{P}{matrix, four points}
 }
 
-\seealso{\code{\link{borderPoint}}, \code{\link{externalPoint}},  
-\code{\link{fixedPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}, 
-\code{\link{movePlot}}
+\seealso{\code{\link{borderPoint}}, \code{\link{EUsPoint}}, \code{\link{fixedPoint}}, 
+\code{\link{imageField}}, \code{\link{designRaster}}, \code{\link{movePlot}}
 }
 \examples{
 library(rPAex)
@@ -33,4 +32,5 @@ text(Q,cex=2)
 points(Q[4,1],Q[4,2],cex=6,col=2,lwd=2)
 par(oldpar)
 }
-\keyword{dplot}
+\keyword{ dplot }
+

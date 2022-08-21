@@ -4,13 +4,10 @@
 Orientation, Position and Length of the Experimental Unit
 }
 \description{
-Generates a number of equidistant spatial points in an area. Fixed a couple of points in 
-the image and the number of segments included, the function determines the position of 
-the segments according to the length of the segment. The function relates the real dimension 
-of the segment measurement to the image dimension. The function is useful for sizing plot sizes in the field, it also facilitates the generation of experimental units in the field.
+Generates a number of equidistant spatial points in an area. Fixed a couple of points in the image and the number of segments included, the function determines the position of the segments according to the length of the segment. The function relates the real dimension of the segment measurement to the image dimension. The function is useful for sizing plot sizes in the field, it also facilitates the generation of experimental units in the field.
 }
 \usage{
-fixedPoint(start, end, npoints, long)
+fixedPoint(start, end, segments, length)
 }
 \arguments{
   \item{start}{ Starting point
@@ -18,10 +15,10 @@ fixedPoint(start, end, npoints, long)
   \item{end}{
 Point at the end
 }
-  \item{npoints}{
-Number of points
+  \item{segments}{
+Number of segments
 }
-  \item{long}{
+  \item{length}{
 Segment length
 }
 }
@@ -32,9 +29,8 @@ This function is used by imageField.
 \item{xy}{Data vector with the coordinate of the points }
 }
 
-\seealso{\code{\link{borderPoint}}, \code{\link{externalPoint}}, 
-\code{\link{fourPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}, 
-\code{\link{movePlot}}
+\seealso{\code{\link{borderPoint}}, \code{\link{EUsPoint}}, \code{\link{fourPoint}}, 
+\code{\link{imageField}}, \code{\link{designRaster}}, \code{\link{movePlot}}
 }
 \examples{
 library(rPAex)
@@ -46,7 +42,7 @@ raster::image(r,col=col2rgb(10),main="Orientation, position and length of the ex
 # P<-locator(2)
 P<-list(x=c(20,80),y=c(40,80))
 P<-cbind(x=P$x,y=P$y)
-Q<-fixedPoint(start = P[1,],end = P[2,],4,long = 10)
+Q<-fixedPoint(start = P[1,],end = P[2,],4,length = 10)
 x <- Q[,1]; y <- Q[,2]
 s <- seq(length(x)-1)  # one shorter than data
 segments(x[s], y[s], x[s+1], y[s+1], col= c(1,0),lwd=2)
@@ -55,7 +51,7 @@ text(20,80,"Total length   = 72.11 units")
 text(20,70,"total segments = 4")
 text(60,40,"   Free space  = 10.7037 units")
 text(60,30,"Segment length = 10 units")
-text(50,10,"fixedPoint(start ,end ,npoints = 4,long = 10)")
+text(50,10,"fixedPoint(start ,end ,segments = 4,length = 10)")
 text(20,35,"start",cex=1.5)
 text(80,75,"end",cex=1.5)
 par(oldpar)

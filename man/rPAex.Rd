@@ -6,23 +6,15 @@
 Automatic Detection of Experimental Unit in Precision Agriculture
 }
 \description{
-The package contains functions to manage images obtained by remote sensing of 
-the experimental fields. In the field the characteristics of the plot are defined 
-(number of units per row and column and dimensions in meters or other dimension 
-measures). The program uses the information to generate the limits and record 
-the content of the different layers, as well as the coordinates of the pixels and 
-the identification of the observation units in the field. It also allows to extract 
-the experimental designs generated in agricolae package and distribute the treatments 
-in the image according to the distribution of the generated plan. The images used in 
-the examples were obtained from the repository url: https://doi.org/10.21223/P3/UVWVLA, 
-International Potato Center, V1.
+The package contains functions to manage images obtained by remote sensing of the experimental fields. In the field the characteristics of the plot are defined (number of units per row and column and dimensions in meters or other dimension measures). The program uses the information to generate the limits and record the content of the different layers, as well as the coordinates of the pixels and 
+the identification of the observation units in the field. It also allows to extract the experimental designs generated in agricolae package and distribute the treatments in the image according to the distribution of the generated plan. The images used in the examples were obtained from the repository url: https://doi.org/10.21223/P3/UVWVLA, International Potato Center, V1.
 }
 \details{
 \tabular{ll}{
 Package: \tab rPAex\cr
 Type: \tab Package\cr
-Version: \tab 1.0.1\cr
-Date: \tab 2020-01-18\cr
+Version: \tab 1.0.2\cr
+Date: \tab 2022-08-20\cr
 License: \tab GPL\cr
 }
 }
@@ -60,7 +52,7 @@ Professor Roberto Quiroz.\cr
 Centro Agronomico Tropical de Investigacion.\cr
 CATIE.\cr
 }
-\seealso{\code{\link{externalPoint}}, \code{\link{fixedPoint}}, \code{\link{fourPoint}}, 
+\seealso{\code{\link{EUsPoint}}, \code{\link{fixedPoint}}, \code{\link{fourPoint}}, 
 \code{\link{imageField}}, \code{\link{borderPoint}}, \code{\link{designRaster}}, 
 \code{\link{movePlot}}
 }
@@ -91,7 +83,7 @@ Treatments T1 (a, b, c, d) and T2 (v, w, x, y)",col=col2rgb(2))
 P<-list(x=c(20,90,80),y=c(80,90,20))
 Q<-fourPoint(P)
 polygon(Q,lwd=3)
-R<-imageField(r, P=Q, nPl=4, nPw=4, long=12, wide=12,col=colors()[18])
+R<-imageField(r, Q, ny=4, nx=4, dy=12, dx=12,col=colors()[18])
 q<-designRaster(R$Qbase,book)$design
 text(q[,6],q[,7]+2,q[,1])
 text(q[,6],q[,7]-2,paste(q[,4],q[,5],sep=" - "))

@@ -1,7 +1,7 @@
 # Rotation and Translate plot position
-# m1: pendiente actual
-# m2: pendiente nueva
-# angle: angulo de rotacion
+# m1: current slope
+# m2: new slope
+# angle: angle of rotation
 # angle <- atan(m2)-atan(m1)
 # q matrix or list
 movePlot<-function(Q,q){

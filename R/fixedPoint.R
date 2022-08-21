@@ -1,24 +1,20 @@
-fixedPoint <-
-function(start,end,npoints,long) # definir los parametros con nombres propios
-{
-if(end[1]<start[1]){
-temp<- end
-end<-start
-start<-temp
+fixedPoint <- function(start,end,segments,length) {
+L=sqrt((start[1]-end[1])^2+(start[2]-end[2])^2)
+n<-2*segments
+X<-matrix(0,nrow=n,ncol=2)
+X[1,]<-start
+X[n,]<-end
+if(segments > 1){
+e = (L - segments*length)/(segments-1)
+di<-end-start
+d <-sqrt(sum(di^2))
+delta<-(length+e)*di/d
+for(i in seq(3,n,2)){
+  X[i,]<-X[i-2,]+delta
 }
-if(start[1]==end[1]) start[1]<- start[1]+ 1e-6
-b<-(start[2]-end[2])/(start[1]-end[1])
-a<- start[2]-b*start[1]
-d<-sqrt((start[1]-end[1])^2+(start[2]-end[2])^2)
-dx<-abs(start[1]-end[1])
-Lx<-long*dx/d
-distancia<-dx-Lx
-r<-seq(0,distancia,length=npoints)
-x0<-r+start[1]
-x1<-Lx+x0
-x<-c(x0,x1)
-x<-sort(x)
-y<-a+b*x
-xy<-cbind(x,y)
-return(xy)
+for(i in seq(n-2,2,-2)){
+  X[i,]<-X[i+2,]-delta
+}
+}
+return(X)
 }

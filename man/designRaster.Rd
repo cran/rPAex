@@ -34,7 +34,7 @@ John Wiley & Sons, new York.
 \author{
 Felipe de Mendiburu
 }
-\seealso{\code{\link{externalPoint}}, \code{\link{fixedPoint}}, \code{\link{fourPoint}}, 
+\seealso{\code{\link{EUsPoint}}, \code{\link{fixedPoint}}, \code{\link{fourPoint}}, 
 \code{\link{imageField}}, \code{\link{borderPoint}}, \code{\link{movePlot}}
 }
 \examples{
@@ -66,13 +66,13 @@ p2<-list(x=c(50.27, 81.42, 93.49),y=c(68.12, 70.82, 23.63))
 q2<-fourPoint(p2)
 polygon(q1,lwd=3,lty=2,border=colors()[51])
 polygon(q2,lwd=3,lty=2,border=colors()[51])
-R1<-imageField(r, P=q1, nPl=4, nPw=3, long=10, wide=9,col=colors()[18])
-R2<-imageField(r, P=q2, nPl=4, nPw=3, long=10, wide=9,col=colors()[18])
+R1<-imageField(r, Q=q1, ny=4, nx=3, dy=10, dx=9,col=colors()[18])
+R2<-imageField(r, Q=q2, ny=4, nx=3, dy=10, dx=9,col=colors()[18])
 q1<-designRaster(R=R1$Qbase,book=r1)$design
 q2<-designRaster(R=R2$Qbase,book=r2)$design
 text(q1[,6],q1[,7],q1[,4])
 text(q2[,6],q2[,7],q2[,4])
 par(oldpar)
 }
-\keyword{design}
+\keyword{ design }
 
