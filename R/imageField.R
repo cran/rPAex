@@ -1,5 +1,5 @@
 imageField <-
-  function(r, Q,ny,nx,dy,dx,start=1,plotting=TRUE ,...){
+function(r, Q,ny,nx,dy,dx,start=1,plotting=TRUE ,...){
     n<-nlayers(r)
     r1<-r
     if(n>1)r1<-raster(r,layer=1)
@@ -10,7 +10,7 @@ imageField <-
     values(Y)<-xy[,2]
     #    check <- ny==1
     #    if(check)ny=2
-    eu<-1:(ny*nx)
+    EU<-1:(ny*nx)
     xy1<-fixedPoint(start=Q[1,1:2],end=Q[4,1:2],segments=ny,length=dy)
     wz1<-fixedPoint(start=Q[2,1:2],end=Q[3,1:2],segments=ny,length=dy)
     M1 <-fixedPoint(start=xy1[1,1:2],end=wz1[1,1:2],segments=nx,length=dx)
@@ -30,8 +30,8 @@ imageField <-
         pol <- raster::spPolygons(area)
         X0<-suppressWarnings(raster::extract(X, pol))
         Y0<-suppressWarnings(raster::extract(Y, pol))
-        x<-X0[[1]];y<-Y0[[1]]; eu<-k
-        P<-cbind(eu,x,y)
+        x<-X0[[1]];y<-Y0[[1]]; EU<-k
+        P<-cbind(EU,x,y)
         for(capa in 1:n){
           r1<-r
           if(n>1) r1<-raster(r,layer=capa)
@@ -57,7 +57,6 @@ imageField <-
     Qbase[,1] <-Qbase[,1]+start-1
     Qbase<-data.frame(Qbase)
     parameters <- list(Q=Q, ny=ny,nx=nx,dy=dy,dx=dx)
-    outPlot <- list(parameters = parameters, Qbase = Qbase, coordinates.unit=Qin)
+    outPlot <- list(parameters = parameters, Qbase = Qbase, coordinates.EU=Qin)
     return(outPlot)
   }
-  

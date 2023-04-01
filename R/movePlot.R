@@ -1,10 +1,5 @@
-# Rotation and Translate plot position
-# m1: current slope
-# m2: new slope
-# angle: angle of rotation
-# angle <- atan(m2)-atan(m1)
-# q matrix or list
-movePlot<-function(Q,q){
+movePlot <-
+function(Q,q){
 q<-matrix(unlist(q),2)
     m1<-(Q[2,2]-Q[1,2])/(Q[2,1]-Q[1,1])
     m2<-(q[2,2]-q[1,2])/(q[2,1]-q[1,1])

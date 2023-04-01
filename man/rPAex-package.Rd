@@ -7,21 +7,20 @@ Automatic Detection of Experimental Unit in Precision Agriculture
 }
 \description{
 The package contains functions to manage images obtained by remote sensing of the experimental fields. In the field the characteristics of the plot are defined (number of units per row and column and dimensions in meters or other dimension measures). The program uses the information to generate the limits and record the content of the different layers, as well as the coordinates of the pixels and 
-the identification of the observation units in the field. It also allows to extract the experimental designs generated in agricolae package and distribute the treatments in the image according to the distribution of the generated plan. The images used in the examples were obtained from the repository url: https://doi.org/10.21223/P3/UVWVLA, International Potato Center, V1.
+the identification of the observation units in the field. It also allows to extract the experimental designs generated in agricolae package and distribute the treatments in the image according to the distribution of the generated plan. The images used in the examples were obtained from the repository of (Loayza et al. 2018) International Potato Center, V1.
 }
 \details{
 \tabular{ll}{
 Package: \tab rPAex\cr
 Type: \tab Package\cr
-Version: \tab 1.0.2\cr
-Date: \tab 2022-08-20\cr
+Version: \tab 1.0.3\cr
+Date: \tab 2023-03-31\cr
 License: \tab GPL\cr
 }
 }
 \references{ 
 Loayza, Hildo; Silva, Luis; Palacios, Susan; Balcazar, Mario; Quiroz, Roberto, 2018, 
-"Dataset for: Modelling crops using high resolution multispectral images", url: https://doi.org/10.21223/P3/UVWVLA, 
-International Potato Center, V1.
+"Dataset for: Modelling crops using high resolution multispectral images", doi: 10.21223/P3/UVWVLA, International Potato Center, V1.
 
 M. Montalvo, G. Pajares, J. M. Guerrero, J. Romeo, M. Guijarro, A. Ribeiro, J. J. Ruz, and J. Cruz. Automatic detection of crop rows in maize fields with high weeds pressure. Expert Systems with Applications, 39(15):11889-11897, 2012.
 
@@ -54,7 +53,7 @@ CATIE.\cr
 }
 \seealso{\code{\link{EUsPoint}}, \code{\link{fixedPoint}}, \code{\link{fourPoint}}, 
 \code{\link{imageField}}, \code{\link{borderPoint}}, \code{\link{designRaster}}, 
-\code{\link{movePlot}}
+\code{\link{movePlot}},\code{\link{cassava}},\code{\link{evolution}}
 }
 \note{
 The fileRaster() function converts a TIFF image to raster. You need to install rgdal first then activite. see example.

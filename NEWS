@@ -1,5 +1,11 @@
 Changes in new version
 
+Version rPAex 1.0.3 (March 31, 2023)
+-------------------------------------------
+- EUsPoint() function:  The Matrix Q was updated (Coordinates of the vertices of a particular experimental unit). The name of the "unit" argument changed to "EU".
+- movePlot() function: change in example.
+- Image data of the cassava crop was added. Two data tables, the data(evolution) that contains 9 images of the third plot in a period of 10 months of 38 flights, and the image of the crop data(cassava) that contains the complete image of the 11 flight. The data corresponds to Images from the public repository of the International Potato Center, where the multispectral spectrum data was extracted, to facilitate the execution of the rPAex package article under development.
+
 Version rPAex 1.0.2 (August 20, 2022)
 -------------------------------------------
 - New EUsPoint() function:  Generates the matrix Q (Coordinates of the vertices of a particular experimental unit)

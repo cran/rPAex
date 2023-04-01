@@ -14,8 +14,7 @@ fourPoint(P)
 \item{P}{matrix, four points}
 }
 
-\seealso{\code{\link{borderPoint}}, \code{\link{EUsPoint}}, \code{\link{fixedPoint}}, 
-\code{\link{imageField}}, \code{\link{designRaster}}, \code{\link{movePlot}}
+\seealso{\code{\link{imageField}}
 }
 \examples{
 library(rPAex)

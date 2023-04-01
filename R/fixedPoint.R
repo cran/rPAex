@@ -1,4 +1,5 @@
-fixedPoint <- function(start,end,segments,length) {
+fixedPoint <-
+function(start,end,segments,length) {
 L=sqrt((start[1]-end[1])^2+(start[2]-end[2])^2)
 n<-2*segments
 X<-matrix(0,nrow=n,ncol=2)

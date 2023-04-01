@@ -27,34 +27,31 @@ Set the border in terms of distance in units measured in the field
 \author{
 Felipe de Mendiburu
 }
-\seealso{\code{\link{fixedPoint}}, \code{\link{fourPoint}}, \code{\link{imageField}}, 
-\code{\link{designRaster}}, \code{\link{movePlot}}}
+\seealso{\code{\link{cassava}}, \code{\link{fourPoint}}, \code{\link{imageField}} 
+}
 
 \examples{
-# use corn crop information
+# use cassava crop information
 library(rPAex)
-crop <- system.file("external/corn.csv", package="rPAex")
-s<-read.csv(crop,header = TRUE)
-r <- raster::rasterFromXYZ(s)
-# simulated area
-P<-list(x=c(287705.9, 287711.8, 287712.8),y=c(8664203.15, 8664204.8, 8664193.67))
+data(cassava)
+r <- raster::rasterFromXYZ(cassava)
+# cassava area
+P<-list(x=c(287689.4, 287702.8, 287706.2),y=c(8664210, 8664214, 8664179))
 Q<-fourPoint(P)
-Rbook<-imageField(r,Q,1,1,0,0,plotting=FALSE)
 op<-par(mfrow=c(1,2))
-out<-borderPoint(r,Rbook,distance=1, main="Border effect")
+raster::image(r,useRaster=FALSE)
+Rbook<-imageField(r,Q,3,2,11,6,plotting=TRUE)
+out<-borderPoint(r,Rbook,distance=1, main="Image crop")
 par(op)
 # NDVI in border
 ndvi<-with(out$Border, (L1-L2)/(L1+L2))
 plt<-out$Border[ndvi>0.5,1:2]
 op<-par(mfrow=c(1,1))
 w<-raster::rasterFromXYZ(out$Border)
-raster::image(w,useRaster=FALSE)
+raster::image(w,useRaster=FALSE,main="Border plants")
 points(plt,cex=0.8,col=colors()[51],pch=20)
 par(op)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-% __ONLY ONE__ keyword per line
 \keyword{ design }
 \keyword{ dplot }
 

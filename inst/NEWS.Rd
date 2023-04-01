@@ -4,6 +4,18 @@
 \encoding{UTF-8}
 \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 1.0.3 (2023-03-31)}{
+  \subsection{Modify function}{
+    \itemize{
+      \item \code{EUsPoint} The Matrix Q was updated (Coordinates of the vertices of a particular experimental unit). The name of the "unit" argument changed to "EU".  
+      \item \code{movePlot} change in example.}
+      }
+  \subsection{New data}{
+    \itemize{
+      \item \code{cassava} crop that contains the complete image of flight 11
+      \item \code{evolution} contains 9 images of 38 flights of a plot in a period of 10 months corresponding to the third plot of the cassava crop.} 
+   } 
+}
 \section{Changes in version 1.0.2 (2022-08-20)}{
   \subsection{New function}{
     \itemize{

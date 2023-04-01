@@ -23,29 +23,31 @@ imageField(r, Q, ny, nx, dy, dx,  start=1, plotting = TRUE, ...)
 \value{
 \item{parameters}{Parameters of experimental design in precision agriculture}
 \item{Qbase}{Image data frame with location in field}
-\item{coordinates.unit}{The limits of each experimental unit}
+\item{coordinates.EU}{The limits of each experimental unit}
 }
 
-\seealso{\code{\link{borderPoint}}, \code{\link{EUsPoint}}, \code{\link{fixedPoint}}, 
-\code{\link{fourPoint}}, \code{\link{designRaster}}, \code{\link{movePlot}}
+\seealso{\code{\link{EUsPoint}}, \code{\link{fixedPoint}}, 
+\code{\link{fourPoint}}, \code{\link{designRaster}}, \code{\link{cassava}}
 }
 \examples{
 library(rPAex)
-crop <- system.file("external/cassava.csv", package="rPAex")
-s<-read.csv(crop,header = TRUE)
-r <- raster::rasterFromXYZ(s)
+library(raster)
+data(cassava)
+r <- rasterFromXYZ(cassava)
+e <- extent(287697.8, 287705.8,8664189, 8664203)  # cutout of study area
+rc <- crop(r, e)
 #-----
 # P<-locator(3)
 P1<-list(x=c(287698.21, 287700.99, 287702.39), 
-        y=c(8664200.68, 8664201.57,8664190.63))
+         y=c(8664200.68, 8664201.57,8664190.63))
 P2<-list(x=c(287701.59, 287704.3, 287705.25),y=c(8664198.5, 8664199.3, 8664191.6))        
 Q1<-fourPoint(P1)
 Q2<-fourPoint(P2)
 #-----
 dy=1; dx=0.9
-raster::image(r,useRaster=FALSE,main="Cassava crop\nnear infrared image")
-img1<-imageField(r, Q1, ny=11, nx=3, dy, dx, plotting = TRUE, border="blue",lwd=1)
-img2<-imageField(r, Q2, ny=6, nx=3, dy, dx, start=34,plotting = TRUE, border="blue",lwd=1)
+raster::image(rc,useRaster=FALSE,main="Cassava crop\nnear infrared image")
+img1<-imageField(rc, Q1, ny=11, nx=3, dy, dx, plotting = TRUE, border="blue",lwd=1)
+img2<-imageField(rc, Q2, ny=6, nx=3, dy, dx, start=34,plotting = TRUE, border="blue",lwd=1)
 R<-rbind(img1$Qbase,img2$Qbase)
 head(R)
 q<-agricolae::tapply.stat(R[,2:3],R[,1],mean)

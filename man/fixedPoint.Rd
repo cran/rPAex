@@ -29,8 +29,7 @@ This function is used by imageField.
 \item{xy}{Data vector with the coordinate of the points }
 }
 
-\seealso{\code{\link{borderPoint}}, \code{\link{EUsPoint}}, \code{\link{fourPoint}}, 
-\code{\link{imageField}}, \code{\link{designRaster}}, \code{\link{movePlot}}
+\seealso{\code{\link{imageField}}
 }
 \examples{
 library(rPAex)

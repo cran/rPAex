@@ -1,4 +1,5 @@
-fourPoint <-function(P) {
+fourPoint <-
+function(P) {
 x<-P$x;y<-P$y
 if (length(P[[1]])==3){
 # Margen de error menor de 10^(-6)
@@ -12,4 +13,3 @@ y[4]<-y[3]-m1*(x[3]-x[4])
 Q<-cbind(x=x,y=y)
 return(Q)
 }
-

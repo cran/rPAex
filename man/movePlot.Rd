@@ -22,29 +22,43 @@ The matrix Q has the points organized according to the fourPoint function. To kn
 Felipe de Mendiburu
 }
 
-\seealso{\code{\link{borderPoint}}, \code{\link{fixedPoint}},  
-\code{\link{fourPoint}}, \code{\link{imageField}}, \code{\link{designRaster}}
+\seealso{ \code{\link{imageField}}
 }
 
 \examples{
 library(rPAex)
 #
-prg1 <- system.file("examples/Ex-01.R", package="rPAex")
-source(prg1)
-r<-data1()
-oldpar<-par(mar=c(2,2,4,2),cex=0.8)
-raster::image(r,col=col2rgb(10),main="Orientation, position and length of the experimental unit")
-P<-list(x=c(23, 68, 78),y=c(77, 85, 45))
-Q<-fourPoint(P)
-polygon(Q)
-R<-imageField(r,Q,3,2,13,22,ploting = TRUE,col=colors()[20])
-points(Q[1,1],Q[1,2],cex=3)
-q<-list(x=c(30, 60),y=c(70, 80))
-arrows(q$x[1],q$y[1],q$x[2],q$y[2],lwd=2,length=0.1)
-Qnew<-movePlot(Q,q)
-polygon(Qnew,border="brown")
-R1<-imageField(r,Qnew,3,2,13,22,ploting = TRUE,col="red",density=20)
-points(q$x[1],q$y[1],cex=3)
+op<-par(mfrow=c(1,3),mar=c(0,0,0,0))
+plot(0,0,xlim=c(0.08,0.9),ylim=c(0.1,0.9),axes=FALSE)
+p0<-list(x=c(0.20, 0.64, 0.81),y=c(0.71, 0.83, 0.40)) # locator(3)
+Q0<-fourPoint(p0)
+dp<-dist(Q0)
+text(Q0[,1],Q0[,2],paste("(",Q0[,1],",",Q0[,2], ")",sep=""),cex=1.2)
+polygon(Q0,border="blue",lwd=1.5)
+centro<-apply(Q0,2,mean)
+areaUE<-round(dp[1]*dp[2],4)
+text(centro[1],centro[2],paste("Area=",areaUE),col="blue")
+plot(0,0,xlim=c(0.08,0.9),ylim=c(0.1,0.9),axes=FALSE)
+polygon(Q0,border="blue",lwd=1.5)
+text(Q0,cex=2)
+s<-list(x=c(0.2,0.62),y=c(0.71,0.73))
+Qs<-movePlot(Q0,s)
+centro<-apply(Qs,2,mean)
+polygon(Qs,border="red",lty=2,lwd=1.5)
+text(Qs,cex=2)
+text(centro[1],centro[2]+0.05,paste("Area=",areaUE),col="red")
+text(centro[1],0.9,"Change position\n of the new images",cex=2)
+#--------
+plot(0,0,xlim=c(0.08,0.9),ylim=c(0.1,0.9),axes=FALSE)
+polygon(Q0,border="blue",lwd=1.5)
+text(Q0,cex=2)
+q<-list(x=c(0.3,0.6),y=c(0.6,0.6))
+Qq<-movePlot(Q0,q)
+polygon(Qq,border="red",lty=2,lwd=1.5)
+text(Qq,cex=2)
+centro<-apply(Qq,2,mean)
+text(centro[1],centro[2]+0.1,paste("Area=",areaUE),col="red")
+par(op)
 }
 \keyword{ dplot }
 

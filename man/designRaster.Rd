@@ -34,8 +34,7 @@ John Wiley & Sons, new York.
 \author{
 Felipe de Mendiburu
 }
-\seealso{\code{\link{EUsPoint}}, \code{\link{fixedPoint}}, \code{\link{fourPoint}}, 
-\code{\link{imageField}}, \code{\link{borderPoint}}, \code{\link{movePlot}}
+\seealso{\code{\link{imageField}}
 }
 \examples{
 library(rPAex)
@@ -57,7 +56,7 @@ outdesign<- agricolae::design.alpha(trt,k=3,r=2,serie=1)
 r1<-subset(outdesign$book, replication==1)
 r2<-subset(outdesign$book, replication==2)
 #--------
-raster::image(r,main="alpha design in the image\n
+raster::image(r,main="alpha design in the image 
 with the distribution of treatments",col=col2rgb(10))
 #P<-locator(3)
 p1<-list(x=c(4.27, 35.42, 47.49),y=c(68.12, 70.82, 23.63))
