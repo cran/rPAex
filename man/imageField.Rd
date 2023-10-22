@@ -31,27 +31,35 @@ imageField(r, Q, ny, nx, dy, dx,  start=1, plotting = TRUE, ...)
 }
 \examples{
 library(rPAex)
-library(raster)
 data(cassava)
-r <- rasterFromXYZ(cassava)
-e <- extent(287697.8, 287705.8,8664189, 8664203)  # cutout of study area
-rc <- crop(r, e)
-#-----
+r <- terra::rast(cassava, type="xyz")
+  # terra::image(r)
+  # p<-locator(2)
+  # e<-terra::ext(unlist(p))
+e <- terra::ext(287691.9, 287708.6, 8664188, 8664203)
+rc <- terra::crop(r,e)
+# Selection of experimental units, p1 and p2
 # P<-locator(3)
-P1<-list(x=c(287698.21, 287700.99, 287702.39), 
-         y=c(8664200.68, 8664201.57,8664190.63))
-P2<-list(x=c(287701.59, 287704.3, 287705.25),y=c(8664198.5, 8664199.3, 8664191.6))        
-Q1<-fourPoint(P1)
-Q2<-fourPoint(P2)
-#-----
+p1<-list(x=c(287698.34, 287701.14, 287702.33), 
+         y=c(8664200.89, 8664201.65, 8664190.67))
+p2<-list(x=c(287701.56, 287704.37, 287705.24),
+	 y=c(8664198.68, 8664199.44, 8664191.46))        
+q1<-fourPoint(p1)
+q2<-fourPoint(p2)
+# dimension of the experimental unit
 dy=1; dx=0.9
-raster::image(rc,useRaster=FALSE,main="Cassava crop\nnear infrared image")
-img1<-imageField(rc, Q1, ny=11, nx=3, dy, dx, plotting = TRUE, border="blue",lwd=1)
-img2<-imageField(rc, Q2, ny=6, nx=3, dy, dx, start=34,plotting = TRUE, border="blue",lwd=1)
+x11()
+op<-par(mar=c(3,3,3,3))
+terra::image(rc,main="Selection of experimental units\nCassava crop",axes=FALSE)
+axis(1); axis(2)
+img1<-imageField(rc, q1, ny=11, nx=3, dy, dx, plotting = TRUE, border="blue",lwd=1)
+img2<-imageField(rc, q2, ny=8, nx=3, dy, dx, start=34,plotting = TRUE, border="blue",lwd=1)
+# Spectral data of selected units
 R<-rbind(img1$Qbase,img2$Qbase)
 head(R)
-q<-agricolae::tapply.stat(R[,2:3],R[,1],mean)
-text(q[,2],q[,3],q[,1],cex=1)
+Q<-agricolae::tapply.stat(R[,2:3],R[,1],mean)
+text(Q[,2],Q[,3],Q[,1],cex=1)
+par(op)
 }
 \keyword{ design }
 

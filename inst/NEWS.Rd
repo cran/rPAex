@@ -4,6 +4,13 @@
 \encoding{UTF-8}
 \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 1.0.4 (2023-10-22)}{
+  \itemize{
+    \item The rPAex package updated the functions affected by the "raster" package. It is now updated to the "terra" package with the same results for all functions. The parameters of each function are maintained.
+  \item Change of name of the dataset _evolution_ to _cropTime_ corresponds to the images of the crop in all its growth.
+}
+}
+
 \section{Changes in version 1.0.3 (2023-03-31)}{
   \subsection{Modify function}{
     \itemize{
@@ -66,6 +73,5 @@
       \item The examples were edited.
     }
  }
-
 }
 

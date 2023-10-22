@@ -1,5 +1,6 @@
 exportPattern("^[[:alpha:]]+")
-import(raster)
+import(terra)
 import(agricolae)
-importFrom("raster", "plot", "predict")
+importFrom("terra", "plot", "predict")
 importFrom("stats", "dist", "lm")
+importFrom("graphics", "polygon")

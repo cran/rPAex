@@ -17,24 +17,28 @@ The image of the cassava crop corresponds to flight 11 recorded by the drone on 
   }
 }
 \details{
-The cassava crop data was built with the TTC_0559_georeferenced.tif image (Loayza, 2018) and the raster package (Hijmans, 2022). The R code instructions that were used for the cassava dataframe were: \cr
-library(raster); img = "TTC_0559_georeferenced.tif" \cr
-layer1 = raster(img,band=1); layer2 = raster(img,band=2); layer3 = raster(img,band=3) \cr
-r = addLayer(layer1,layer2,layer3); e = extent(287688, 287709, 8664174, 8664217)\cr
-rc = crop(r, e); bands = values(rc); xy = coordinates(rc); cassava = data.frame(xy,bands)
+The cassava crop data was built with the TTC_0559_georeferenced.tif image (Loayza, 2018) and the terra package (Hijmans, 2023). 
 }
 \source{
 International Potato Center. CIP - Lima Peru. Dataverse CIP.
 }
 \references{
-Loayza, Hildo; Silva, Luis; Palacios, Susan; Balcazar, Mario; Quiroz, Roberto, 2018, "Dataset for: Modelling crops using high resolution multispectral images", <doi: 10.21223/P3/UVWVLA>, International Potato Center, V1
-
-Hijmans, Robert J. 2022. Raster: Geographic Data Analysis and Modeling. https://CRAN.R-project.org/package=raster.
+Loayza, Hildo; Silva, Luis; Palacios, Susan; Balcazar, Mario; Quiroz, Roberto, 2018, "Dataset for: Modelling crops using high resolution multispectral images", <doi: 10.21223/P3/UVWVLA>, International Potato Center, V1 \cr
+Hijmans R (2023). _terra: Spatial Data Analysis. https://CRAN.R-project.org/package=terra
 }
-\seealso{\code{\link{evolution}}, \code{\link{EUsPoint}}, \code{\link{imageField}}, \code{\link{borderPoint}}}
+\seealso{\code{\link{cropTime}}, \code{\link{EUsPoint}}, \code{\link{imageField}}, \code{\link{borderPoint}}}
 \examples{
 library(rPAex)
+# Generation of cassava data
+# download the TTC_0559_georeferenced.tif image from CIP DATAVERSE repository
+# library(terra)
+# img = "TTC_0559_georeferenced.tif" 
+# r<-rast(img)
+# e = ext(287688, 287709, 8664174, 8664217)
+# rc = crop(r, e)
+# cassava = extract(rc,xy="TRUE")
 data(cassava)
-head(cassava)
+# Contains 262056 pixels of 5 centimeters each with multispectral data
+str(cassava)
 }
 \keyword{datasets}

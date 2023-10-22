@@ -1,15 +1,7 @@
 imageField <-
 function(r, Q,ny,nx,dy,dx,start=1,plotting=TRUE ,...){
-    n<-nlayers(r)
-    r1<-r
-    if(n>1)r1<-raster(r,layer=1)
-    X<-r1
-    Y<-r1
-    xy<-coordinates(r1)
-    values(X)<-xy[,1]
-    values(Y)<-xy[,2]
-    #    check <- ny==1
-    #    if(check)ny=2
+    n<-dim(r)[3]
+    X<-r
     EU<-1:(ny*nx)
     xy1<-fixedPoint(start=Q[1,1:2],end=Q[4,1:2],segments=ny,length=dy)
     wz1<-fixedPoint(start=Q[2,1:2],end=Q[3,1:2],segments=ny,length=dy)
@@ -22,36 +14,27 @@ function(r, Q,ny,nx,dy,dx,start=1,plotting=TRUE ,...){
     Qin<-M1
     k<-0
     a<-c(1,2,2*(nx+1),2*nx+1)
-    #    if(check)ny=1  
     for(j in 1:ny){ 
       for(i in seq(0,2*(nx-1),2)){
         k<-k+1
         area<-rbind(Qin[a+i,])
-        pol <- raster::spPolygons(area)
-        X0<-suppressWarnings(raster::extract(X, pol))
-        Y0<-suppressWarnings(raster::extract(Y, pol))
-        x<-X0[[1]];y<-Y0[[1]]; EU<-k
-        P<-cbind(EU,x,y)
-        for(capa in 1:n){
-          r1<-r
-          if(n>1) r1<-raster(r,layer=capa)
-          z1<-suppressWarnings(raster::extract(r1, pol))
-          z<-z1[[1]]
-          P<-cbind(P,z)
-        }
-        P<-P
+        pol <- terra::vect(area,"polygons")
+        Y<-terra::extract(X, pol,xy=TRUE)
+        EU<-k
+        v<-Y[,2:(n+1)]
+        P<-cbind(EU,x=Y$x,y=Y$y,v)
         if(k==1)Qbase<-P
         else Qbase<-rbind(Qbase,P)
-        if(plotting)raster::plot(pol,add=TRUE,...)
+        if(plotting)polygon(area,...)
       }
       a<-a+4*nx
     }
     if(beta>0){
       s<-Qbase[,1]
-      v<-nx*((s-1)%/%nx+1)-(s-nx*( (s-1)%/%nx))+1
+      w<-nx*((s-1)%/%nx+1)-(s-nx*( (s-1)%/%nx))+1
       nplot<-nx*ny
-      v<-1+abs(v-nplot)
-      Qbase[,1]<-v
+#     w<-1+abs(v-nplot)
+      Qbase[,1]<-w
     }
     colnames(Qbase)[4:(n+3)]<-c(paste("L",1:n,sep=""))
     Qbase[,1] <-Qbase[,1]+start-1
@@ -60,3 +43,4 @@ function(r, Q,ny,nx,dy,dx,start=1,plotting=TRUE ,...){
     outPlot <- list(parameters = parameters, Qbase = Qbase, coordinates.EU=Qin)
     return(outPlot)
   }
+

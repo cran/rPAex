@@ -40,14 +40,14 @@ y = M[3,1]+M[3,2]*x
 Q1[4,1]<-x; Q1[4,2]=y
 #-------------------
 u <- imageField(r, Q1, 1, 1, 0, 0, plotting = FALSE)$Qbase
-w<-raster::rasterFromXYZ(u[,-1])
+w<-terra::rast(u[,-1],type="xyz")
 u <- imageField(w, Q1, 1, 1, 0, 0, plotting = FALSE)$Qbase
 v <- imageField(w, Q, ny, nx, dy,dx, plotting = FALSE)$Qbase
 s1 <- paste(u[, 2], u[, 3], sep = "-")
 s2 <- paste(v[, 2], v[, 3], sep = "-")
 s <- s1 %in% s2
 border <- u[!s,-1 ]
-w<-raster::rasterFromXYZ(border)
-if(plotting)raster::image(w,useRaster=FALSE,...)
+w<-terra::rast(border,type="xyz")
+if(plotting)terra::image(w,...)
 return(list(Qborder=Q1,Border=border))
 }

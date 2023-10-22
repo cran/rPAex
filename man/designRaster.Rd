@@ -37,8 +37,8 @@ Felipe de Mendiburu
 \seealso{\code{\link{imageField}}
 }
 \examples{
+# alpha design with 12 treatments
 library(rPAex)
-oldpar<-par(mar=c(2,2,3,2),cex=0.8)
 # r = simulated raster image data
 prg1 <- system.file("examples/Ex-01.R", package="rPAex")
 source(prg1)
@@ -56,8 +56,11 @@ outdesign<- agricolae::design.alpha(trt,k=3,r=2,serie=1)
 r1<-subset(outdesign$book, replication==1)
 r2<-subset(outdesign$book, replication==2)
 #--------
-raster::image(r,main="alpha design in the image 
-with the distribution of treatments",col=col2rgb(10))
+x11()
+oldpar<-par(mar=c(2,2,3,2),cex=0.8)
+terra::image(r,main="alpha design in the image 
+with the distribution of treatments",col=col2rgb(10),axes=FALSE)
+axis(1); axis(2)
 #P<-locator(3)
 p1<-list(x=c(4.27, 35.42, 47.49),y=c(68.12, 70.82, 23.63))
 q1<-fourPoint(p1)

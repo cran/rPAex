@@ -1,5 +1,10 @@
 Changes in new version
 
+Version rPAex 1.0.4 (October 22, 2023)
+-------------------------------------------
+- The rPAex package updated the functions affected by the "raster" package. It is now updated to the "terra" package with the same results for all functions. The parameters of each function are maintained.
+- Change of name of the dataset _evolution_ to _cropTime_ corresponds to the images of the crop in all its growth.
+
 Version rPAex 1.0.3 (March 31, 2023)
 -------------------------------------------
 - EUsPoint() function:  The Matrix Q was updated (Coordinates of the vertices of a particular experimental unit). The name of the "unit" argument changed to "EU".

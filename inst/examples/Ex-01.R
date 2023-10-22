@@ -14,6 +14,6 @@ data1<-function()
   field$z3<-round(rnorm(n,130,5),0)
   field$z1<-round(rnorm(n,40,5),0)
   field$z2<-round(rnorm(n,100,5),0)
-  r<-raster::rasterFromXYZ(field)
+  r<-terra::rast(field,type="xyz")
   return(r)
 }

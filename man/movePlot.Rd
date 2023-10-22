@@ -28,7 +28,9 @@ Felipe de Mendiburu
 \examples{
 library(rPAex)
 #
+x11()
 op<-par(mfrow=c(1,3),mar=c(0,0,0,0))
+# Coordinates during initial flight
 plot(0,0,xlim=c(0.08,0.9),ylim=c(0.1,0.9),axes=FALSE)
 p0<-list(x=c(0.20, 0.64, 0.81),y=c(0.71, 0.83, 0.40)) # locator(3)
 Q0<-fourPoint(p0)
@@ -36,8 +38,10 @@ dp<-dist(Q0)
 text(Q0[,1],Q0[,2],paste("(",Q0[,1],",",Q0[,2], ")",sep=""),cex=1.2)
 polygon(Q0,border="blue",lwd=1.5)
 centro<-apply(Q0,2,mean)
-areaUE<-round(dp[1]*dp[2],4)
-text(centro[1],centro[2],paste("Area=",areaUE),col="blue")
+areaEU<-round(dp[1]*dp[2],4)
+text(centro[1],centro[2],paste("Area=",areaEU),col="blue")
+#-------
+# Change of coordinates effect of flight, correction to initial flight
 plot(0,0,xlim=c(0.08,0.9),ylim=c(0.1,0.9),axes=FALSE)
 polygon(Q0,border="blue",lwd=1.5)
 text(Q0,cex=2)
@@ -46,18 +50,14 @@ Qs<-movePlot(Q0,s)
 centro<-apply(Qs,2,mean)
 polygon(Qs,border="red",lty=2,lwd=1.5)
 text(Qs,cex=2)
-text(centro[1],centro[2]+0.05,paste("Area=",areaUE),col="red")
+text(centro[1],centro[2]+0.05,paste("Area=",areaEU),col="red")
 text(centro[1],0.9,"Change position\n of the new images",cex=2)
 #--------
+# correction result
 plot(0,0,xlim=c(0.08,0.9),ylim=c(0.1,0.9),axes=FALSE)
-polygon(Q0,border="blue",lwd=1.5)
-text(Q0,cex=2)
-q<-list(x=c(0.3,0.6),y=c(0.6,0.6))
-Qq<-movePlot(Q0,q)
-polygon(Qq,border="red",lty=2,lwd=1.5)
-text(Qq,cex=2)
-centro<-apply(Qq,2,mean)
-text(centro[1],centro[2]+0.1,paste("Area=",areaUE),col="red")
+polygon(Qs,border="blue",lwd=1.5)
+text(Qs,cex=2)
+text(centro[1],centro[2],paste("Area=",areaEU),col="blue")
 par(op)
 }
 \keyword{ dplot }

@@ -19,22 +19,32 @@
 }
 \examples{
   library(rPAex)
-  library(raster)
   data(cassava)
-  e <- extent(287697.8, 287705.8,8664189, 8664203)
-  s <- rasterFromXYZ(cassava)
-  r <- crop(s,e)
+  s <- terra::rast(cassava,type="xyz")
+  # Use image and locator(2)
+  x11()
+  op<-par(mar=c(2,2,3,2),cex=0.8)
+  # terra::image(s)
+  # p<-locator(2)
+  # e<-terra::ext(unlist(p))
+  e <- terra::ext(287691.9, 287708.6, 8664188, 8664203)
+  r <- terra::crop(s,e)
   #-----
-  # P<-locator(3)
-  P<-list(x=c(287698.21, 287700.99, 287702.39), y=c(8664200.68, 8664201.57,8664190.63))
-  Q<-fourPoint(P)
+  # Define the border of the plot
+  # p<-locator(3)
+  p<-list(x=c(287698.21, 287700.99, 287702.39), y=c(8664200.68, 8664201.57,8664190.63))
+  q<-fourPoint(p)
   #-----
+  # Define a subarea of 11x3 units by 1x0.9 meters
   ny<-11; nx<-3; dy=1; dx=0.9
-  image(r,useRaster=FALSE,main="Cassava crop\nnear infrared image")
-  Rbook<-imageField(r, Q, ny, nx, dy, dx, plotting = TRUE, border="blue",lwd=1)
-  # See experimental unit number 11
-  Q<-EUsPoint(Rbook,EU=11)
-  polygon(Q,lty=2,density=20)
+  terra::image(r,main="Cassava crop\nnear infrared image",bty="l")
+  Rbook<-imageField(r, q, ny, nx, dy, dx, plotting = TRUE, border="blue",lwd=1)
+  # identify unit 11 with the spectral information
+  Q<-EUsPoint(Rbook,EU=11) 
+  polygon(Q,col="black")
+  pol <- terra::vect(Q, "polygons")
+  R <- terra::extract(r, pol, xy = TRUE)
+  head(R)
 }
 \keyword{ dplot }
 
