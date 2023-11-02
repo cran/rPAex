@@ -22,7 +22,7 @@
   data(cassava)
   s <- terra::rast(cassava,type="xyz")
   # Use image and locator(2)
-  x11()
+  #x11()
   op<-par(mar=c(2,2,3,2),cex=0.8)
   # terra::image(s)
   # p<-locator(2)
@@ -45,6 +45,7 @@
   pol <- terra::vect(Q, "polygons")
   R <- terra::extract(r, pol, xy = TRUE)
   head(R)
+  par(op)
 }
 \keyword{ dplot }
 

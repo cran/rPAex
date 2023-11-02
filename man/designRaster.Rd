@@ -56,11 +56,11 @@ outdesign<- agricolae::design.alpha(trt,k=3,r=2,serie=1)
 r1<-subset(outdesign$book, replication==1)
 r2<-subset(outdesign$book, replication==2)
 #--------
-x11()
-oldpar<-par(mar=c(2,2,3,2),cex=0.8)
+#x11()
+op<-par(mar=c(2,2,3,2),cex=0.8)
 terra::image(r,main="alpha design in the image 
 with the distribution of treatments",col=col2rgb(10),axes=FALSE)
-axis(1); axis(2)
+axis(1); axis(2,seq(0,100,20))
 #P<-locator(3)
 p1<-list(x=c(4.27, 35.42, 47.49),y=c(68.12, 70.82, 23.63))
 q1<-fourPoint(p1)
@@ -74,7 +74,7 @@ q1<-designRaster(R=R1$Qbase,book=r1)$design
 q2<-designRaster(R=R2$Qbase,book=r2)$design
 text(q1[,6],q1[,7],q1[,4])
 text(q2[,6],q2[,7],q2[,4])
-par(oldpar)
+par(op)
 }
 \keyword{ design }
 

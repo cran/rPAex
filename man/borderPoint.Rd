@@ -36,26 +36,37 @@ library(rPAex)
 data(cassava)
 r <- terra::rast(cassava,type="xyz")
 # cassava area
-# Apply locator(3) to generate 3 points in the area
+# Apply: x11()
+terra::image(r,axes=FALSE)
+# p <- locator(3) to generate 3 points in the area
 p<-list(x=c(287689.4, 287702.8, 287706.2),y=c(8664210, 8664214, 8664179))
 # Generate the fourth points of the area
 q<-fourPoint(p)
-op<-par(mfrow=c(1,2))
-terra::image(r,axes=FALSE, main="Image crop")
-axis(1); axis(2)
+op<-par(mfrow=c(1,3),mar=c(0,0,0,0))
+terra::image(r,axes=FALSE)
+text(287693.3,8664215,"Image crop",cex=1.5)
+r <- terra::rast(cassava,type="xyz")
+# cassava area
+# Apply: p <- locator(3) to generate 3 points in the area
+
+p<-list(x=c(287689.4, 287702.8, 287706.2),y=c(8664210, 8664214, 8664179))
+# Generate the fourth points of the area
+q<-fourPoint(p)
+op<-par(mfrow=c(1,3),mar=c(0,0,0,0))
+terra::image(r,axes=FALSE)
+text(287693.3,8664215,"Image crop",cex=1.5)
 # The area is divided into 3x2 plots of 11x6 meters per experimental unit
 Rbook<-imageField(r,q,3,2,11,6,plotting=TRUE)
-out<-borderPoint(r,Rbook,distance=1, main="Border Points",axes=FALSE)
-axis(1); axis(2)
-par(op)
+out<-borderPoint(r,Rbook,distance=1,axes=FALSE)
+text(287693.4, 8664214, "Border",cex=1.5)
 # NDVI in border
-op<-par(mfrow=c(1,1))
 ndvi<-with(out$Border, (L1-L2)/(L1+L2))
 # NDVI > 0.5 more probability of vegetation
 plt<-out$Border[ndvi>0.5,1:2]
 w<-terra::rast(out$Border)
-terra::image(w,main="Vegetation on the boundary (NDVI > 0.5)",axes=FALSE)
-axis(1); axis(2)
+text(287693.3,8664215,"Border",cex=1,5)
+terra::image(w,axes=FALSE)
+text(287693.3,8664215,"Vegetation",cex=1.5)
 points(plt,cex=0.2,col=colors()[51],pch=20)
 par(op)
 }

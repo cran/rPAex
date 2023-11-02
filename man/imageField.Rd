@@ -33,13 +33,13 @@ imageField(r, Q, ny, nx, dy, dx,  start=1, plotting = TRUE, ...)
 library(rPAex)
 data(cassava)
 r <- terra::rast(cassava, type="xyz")
-  # terra::image(r)
-  # p<-locator(2)
-  # e<-terra::ext(unlist(p))
+# x11()
+# terra::image(r)
+# p<-locator(2)
+# e<-terra::ext(unlist(p))
 e <- terra::ext(287691.9, 287708.6, 8664188, 8664203)
 rc <- terra::crop(r,e)
-# Selection of experimental units, p1 and p2
-# P<-locator(3)
+# Selection of experimental units, p1 and p2 in terra::image(r)
 p1<-list(x=c(287698.34, 287701.14, 287702.33), 
          y=c(8664200.89, 8664201.65, 8664190.67))
 p2<-list(x=c(287701.56, 287704.37, 287705.24),
@@ -48,10 +48,8 @@ q1<-fourPoint(p1)
 q2<-fourPoint(p2)
 # dimension of the experimental unit
 dy=1; dx=0.9
-x11()
-op<-par(mar=c(3,3,3,3))
+op<-par(mar=c(0,0,3,0))
 terra::image(rc,main="Selection of experimental units\nCassava crop",axes=FALSE)
-axis(1); axis(2)
 img1<-imageField(rc, q1, ny=11, nx=3, dy, dx, plotting = TRUE, border="blue",lwd=1)
 img2<-imageField(rc, q2, ny=8, nx=3, dy, dx, start=34,plotting = TRUE, border="blue",lwd=1)
 # Spectral data of selected units

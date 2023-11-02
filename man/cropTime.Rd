@@ -43,8 +43,8 @@ ndviTime<-data.frame(cropTime,ndvi)
 fly<-c(1,  2,  6, 11, 20, 23, 30, 36, 38)
 dates<-c("2014-12-18","2015-01-06","2015-01-29","2015-02-26","2015-04-22",
          "2015-05-15", "2015-07-03","2015-08-13","2015-08-28")
-x11()
-op<-par(mfrow=c(3,3),mar=c(0,0,1,0),cex=1)
+#x11()
+op<-par(mfrow=c(3,3),mar=c(0,0,1,0),cex=0.8)
 for(i in 1:9){
   P<-ndviTime[ndviTime$Flight==fly[i],]
   P$ndvi<-(P$L1-P$L2)/(P$L1+P$L2)

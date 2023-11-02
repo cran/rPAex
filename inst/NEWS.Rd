@@ -4,6 +4,12 @@
 \encoding{UTF-8}
 \newcommand{\CRANpkg}{\href{http://CRAN.R-project.org/package=#1}{\pkg{#1}}}
 
+\section{Changes in version 1.0.5 (2023-11-01)}{
+  \itemize{
+    \item The examples were edited. The examples were edited. Error in x11(): screen devices should not be used in examples.
+}
+}
+
 \section{Changes in version 1.0.4 (2023-10-22)}{
   \itemize{
     \item The rPAex package updated the functions affected by the "raster" package. It is now updated to the "terra" package with the same results for all functions. The parameters of each function are maintained.

@@ -13,8 +13,8 @@ the identification of the observation units in the field. It also allows to extr
 \tabular{ll}{
 Package: \tab rPAex\cr
 Type: \tab Package\cr
-Version: \tab 1.0.4\cr
-Date: \tab 2023-10-22\cr
+Version: \tab 1.0.5\cr
+Date: \tab 2023-11-01\cr
 License: \tab GPL\cr
 }
 }
@@ -67,39 +67,39 @@ book<-outdesign$book
 prg1 <- system.file("examples/Ex-01.R", package="rPAex")
 source(prg1)
 r<-data1()
-x11()
-oldpar<-par(mar=c(2,2,4,2),cex=0.9)
+# x11()
+op<-par(mar=c(2,2,4,2),cex=0.9)
 terra::image(r,main="Graeco - latin square design\n
-Treatments T1 (a, b, c, d) and T2 (v, w, x, y)",col=col2rgb(2),ylim=c(0,110),axes=FALSE)
+Treatments T1 (a, b, c, d) and T2 (v, w, x, y)",col=col2rgb(2),axes=FALSE,xlim=c(0,101))
 axis(1);axis(2)
 # 3 points are set in the image, to generate the experimental area
-# and complete the fourth point to close the polygon.
 # P<-locator(3)
 P<-list(x=c(20,90,80),y=c(80,90,20))
+# and complete the fourth point to close the polygon.
 Q<-fourPoint(P)
 polygon(Q,lwd=3)
 R<-imageField(r, Q, ny=4, nx=4, dy=12, dx=12,col=colors()[18])
 q<-designRaster(R$Qbase,book)$design
 text(q[,6],q[,7]+2,q[,1])
 text(q[,6],q[,7]-2,paste(q[,4],q[,5],sep=" - "))
-par(oldpar)
-x11()
-op<-par(mar=c(2,2,2,2),cex=0.9)
+par(op)
 # An irregular area, use 4 points with p<-locator(4) and apply q<-fourPoint(p) to form the matrix
-# p<-locator(4)
-terra::image(r,xlim=c(20,100),axes=FALSE,main="An irregular area")
+# x11()
+op<-par(mar=c(2,2,2,2),cex=0.9)
+terra::image(r,xlim=c(20,100),ylim=c(10,100),axes=FALSE,main="An irregular area",col=col2rgb(3))
 axis(1);axis(2)
+# p<-locator(4)
 p<-list(x=c(40, 88, 80, 29) , y=c(83, 82, 19, 20))
 q<-fourPoint(p)
-polygon(q,lwd=3)
-text(q+c(2,2,2,-2),cex=1.5)
 dist(q)
 dx=10;dy=12
 nx<-4; ny<-5
 S<-imageField(r,q,ny,nx,dy,dx,col=colors()[20])
+points(q,cex=4,pch=20,col="white")
+text(q,cex=1.5)
 M<-agricolae::tapply.stat(S$Qbase[,2:3],S$Qbase$EU)
 # identifying EU
-text(M[,2],M[,3],M[,1],cex=2)
+text(M[,2],M[,3],M[,1],cex=1)
 par(op)
 }
 

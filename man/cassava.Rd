@@ -36,9 +36,11 @@ library(rPAex)
 # r<-rast(img)
 # e = ext(287688, 287709, 8664174, 8664217)
 # rc = crop(r, e)
-# cassava = extract(rc,xy="TRUE")
+# terra::image(rc) # Image cassava
+# to use locator(), fourPoint() and imageField() to generate the cassava data
 data(cassava)
 # Contains 262056 pixels of 5 centimeters each with multispectral data
-str(cassava)
+r<-terra::rast(cassava,type="xyz")
+terra::image(r) # Image cassava
 }
 \keyword{datasets}

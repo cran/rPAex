@@ -36,8 +36,8 @@ library(rPAex)
 prg1 <- system.file("examples/Ex-01.R", package="rPAex")
 source(prg1)
 r<-data1()
-x11()
-oldpar<-par(mar=c(2,2,4,2),cex=0.8)
+#x11()
+op<-par(mar=c(2,2,4,2),cex=0.8)
 terra::image(r,col=col2rgb(10),main="Orientation, position and length of the experimental
  unit\nstart = P1, end = P2, segments=4 and segment length = 10",bty="l")
 P<-list(x=c(20,80),y=c(40,80)) # or P<-locator(2)
@@ -55,6 +55,6 @@ text(60,30,"Segment length = 10 units")
 text(50,10,"fixedPoint(start ,end ,segments = 4,length = 10)")
 text(20,35,"start",cex=1.5)
 text(80,75,"end",cex=1.5)
-par(oldpar)
+par(op)
 }
 \keyword{ design }
